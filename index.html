@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SepReformer for speech separation"/>
+  <meta property="og:title" content="SepReformer"/>
+  <meta property="og:description" content="SepRe for speech separation"/>
+  <meta property="og:url" content="https://ForDemoPage.github.io/SepReformer/"/>
+  <meta property="og:image" content="static/image/carousel1.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:title" content="SepReformer">
+  <meta name="twitter:description" content="SepReformer for speech separation">
+  <meta name="twitter:image" content="static/images/carousel2.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="Speech Separation, Machine Learning, Deep Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Separate and Reconstruct: Asymmetric Encoder-Decoder for Speech Separation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/sepreformer.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <style>
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .item img {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Separate and Reconstruct: <br>Asymmetric Encoder-Decoder for Speech Separation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Anonymous Author(s)</a>,
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Affiliation<br></span>
+              <span class="eql-cntrb">
+              </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Supplementary</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://anonymous.4open.science/r/SepReformer" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser audio-->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+         <h1 class="subtitle has-text-centered">
+          <b>Demo</b>
+        </h1>
+
+        <h2 class="subtitle has-text-centered">
+          <b>WSJ0_MIX</b>
+        </h2>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h3>Original Audio - Mixed</h3>
+            <img src="static/images/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521.png" alt="Spectrogram of Mixed Audio" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio1" controls>
+              <source src="static/audios/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Original Audio - Speaker 1</h3>
+            <img src="static/images/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521_0.png" alt="Spectrogram of Separated Audio - Speaker 1" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio2" controls>
+              <source src="static/audios/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521_0.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Original Audio - Speaker 2</h3>
+            <img src="static/images/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521_1.png" alt="Spectrogram of Separated Audio - Speaker 2" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio3" controls>
+              <source src="static/audios/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521_1.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h3>Original Audio - Mixed</h3>
+            <img src="static/images/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521.png" alt="Spectrogram of Mixed Audio" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio1" controls>
+              <source src="static/audios/wsj0-mix_original_050a050a_1.7521_422c020j_-1.7521.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Separated Audio - Speaker 1</h3>
+            <img src="static/images/wsj0-mix_separated_050a050a_1.7521_422c020j_-1.7521_0.png" alt="Spectrogram of Separated Audio - Speaker 1" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio2" controls>
+              <source src="static/audios/wsj0-mix_separated_050a050a_1.7521_422c020j_-1.7521_0.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Separated Audio - Speaker 2</h3>
+            <img src="static/images/wsj0-mix_separated_050a050a_1.7521_422c020j_-1.7521_1.png" alt="Spectrogram of Separated Audio - Speaker 2" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio3" controls>
+              <source src="static/audios/wsj0-mix_separated_050a050a_1.7521_422c020j_-1.7521_1.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        
+        <h2 class="subtitle has-text-centered">
+          <b>WHAM</b>
+        </h2>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h3>Original Audio - Mixed</h3>
+            <img src="static/images/wham_original_050a050k_0.74546_22hc010o_-0.74546.png" alt="Spectrogram of Mixed Audio" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio1" controls>
+              <source src="static/audios/wham_original_050a050k_0.74546_22hc010o_-0.74546.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Original Audio - Speaker 1</h3>
+            <img src="static/images/wham_original_050a050k_0.74546_22hc010o_-0.74546_0.png" alt="Spectrogram of Separated Audio - Speaker 1" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio2" controls>
+              <source src="static/audios/wham_original_050a050k_0.74546_22hc010o_-0.74546_0.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Original Audio - Speaker 2</h3>
+            <img src="static/images/wham_original_050a050k_0.74546_22hc010o_-0.74546_1.png" alt="Spectrogram of Separated Audio - Speaker 2" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio3" controls>
+              <source src="static/audios/wham_original_050a050k_0.74546_22hc010o_-0.74546_1.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h3>Original Audio - Mixed</h3>
+            <img src="static/images/wham_original_050a050k_0.74546_22hc010o_-0.74546.png" alt="Spectrogram of Mixed Audio" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio1" controls>
+              <source src="static/audios/wham_original_050a050k_0.74546_22hc010o_-0.74546.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Separated Audio - Speaker 1</h3>
+            <img src="static/images/wham_separated_050a050k_0.74546_22hc010o_-0.74546_0.png" alt="Spectrogram of Separated Audio - Speaker 1" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio2" controls>
+              <source src="static/audios/wham_separated_050a050k_0.74546_22hc010o_-0.74546_0.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Separated Audio - Speaker 2</h3>
+            <img src="static/images/wham_separated_050a050k_0.74546_22hc010o_-0.74546_1.png" alt="Spectrogram of Separated Audio - Speaker 2" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio3" controls>
+              <source src="static/audios/wham_separated_050a050k_0.74546_22hc010o_-0.74546_1.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        
+        <h2 class="subtitle has-text-centered">
+          <b>WHAMR</b>
+        </h2>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h3>Original Audio - Mixed</h3>
+            <img src="static/images/whamr_original_050a0502_1.3461_440o030j_-1.3461.png" alt="Spectrogram of Mixed Audio" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio1" controls>
+              <source src="static/audios/whamr_original_050a0502_1.3461_440o030j_-1.3461.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Original Audio - Speaker 1</h3>
+            <img src="static/images/whamr_original_050a0502_1.3461_440o030j_-1.3461_0.png" alt="Spectrogram of Separated Audio - Speaker 1" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio2" controls>
+              <source src="static/audios/whamr_original_050a0502_1.3461_440o030j_-1.3461_0.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Original Audio - Speaker 2</h3>
+            <img src="static/images/whamr_original_050a0502_1.3461_440o030j_-1.3461_1.png" alt="Spectrogram of Separated Audio - Speaker 2" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio3" controls>
+              <source src="static/audios/whamr_original_050a0502_1.3461_440o030j_-1.3461_1.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h3>Original Audio - Mixed</h3>
+            <img src="static/images/whamr_original_050a0502_1.3461_440o030j_-1.3461.png" alt="Spectrogram of Mixed Audio" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio1" controls>
+              <source src="static/audios/whamr_original_050a0502_1.3461_440o030j_-1.3461.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Separated Audio - Speaker 1</h3>
+            <img src="static/images/whamr_separated_050a0502_1.3461_440o030j_-1.3461_0.png" alt="Spectrogram of Separated Audio - Speaker 1" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio2" controls>
+              <source src="static/audios/whamr_separated_050a0502_1.3461_440o030j_-1.3461_0.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="column has-text-centered">
+            <h3>Separated Audio - Speaker 2</h3>
+            <img src="static/images/whamr_separated_050a0502_1.3461_440o030j_-1.3461_1.png" alt="Spectrogram of Separated Audio - Speaker 2" style="width:100%; max-width:600px;">
+            <audio id="teaser-audio3" controls>
+              <source src="static/audios/whamr_separated_050a0502_1.3461_440o030j_-1.3461_1.wav" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser audio -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Since the recent success of a time-domain speech separation, further improvements
+              have been made by expanding the length and channel of a feature sequence to
+              increase the amount of computation. When temporally expanded to a long sequence,
+              the feature is segmented into chunks as a dual-path model in most studies of
+              speech separation. In particular, it is common for the process of separating features
+              corresponding to each speaker to be located in the final stage of the network.
+              However, it is more advantageous and intuitive to proactively expand the feature
+              sequence to include the number of speakers as an extra dimension. In this paper, we
+              present an asymmetric strategy in which the encoder and decoder are partitioned
+              to perform distinct processing in separation tasks. The encoder analyzes features,
+              and the output of the encoder is split into the number of speakers to be separated.
+              The separated sequences are then reconstructed by the weight-shared decoder, as
+              Siamese network, in addition to cross-speaker processing. By using the Siamese
+              network in the decoder, without using speaker information, the network directly
+              learns to discriminate the features using a separation objective. With a common
+              split layer, intermediate encoder features for skip connections are also split for
+              the reconstruction decoder based on the U-Net structure. In addition, instead of
+              segmenting the feature sequence into chunks and processing as dual-path, we
+              design global and local Transformer blocks to directly process long sequences.
+              The experimental results demonstrated that this separation-and-reconstruction
+              framework is effective and that the combination of proposed global and local
+              Transformer can sufficiently replace the role of inter- and intra-chunk processing in
+              dual-path structure. Finally, the presented model including both of these achieved
+              state-of-the-art performance with much less computation than before in various
+              benchmark datasets.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+  
+  <!-- Image carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Figure_8.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              First image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Figure_1.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Second image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Figure_2.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Third image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Figure_4.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Fourth image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Figure_5.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Fifth image
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End image carousel -->
+
+  <!-- Paper Methods -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Summary</h2>
+          <div class="content has-text-justified">
+            <h2>Introduction</h2>
+            <p>The paper presents a novel approach to speech separation using an asymmetric encoder-decoder network named SepReformer. The goal is to improve the efficiency and performance of separating mixed speech signals into individual components. Traditional methods, like the dual-path model, segment long sequences into chunks, which increases computational load and complexity. The proposed SepReformer addresses these issues with a more direct and efficient approach.</p>
+            
+            <h2>Key Methods</h2>
+            <h3>1. Asymmetric Encoder-Decoder Structure</h3>
+            <ul>
+                <li>
+                    <strong>Encoder:</strong> Processes the input signal to generate feature representations.
+                </li>
+                <li>
+                    <strong>Early Split:</strong> The encoded feature sequence is split early in the network, corresponding to the number of speakers, which allows the network to handle each speaker's features separately from an early stage.
+                </li>
+                <li>
+                    <strong>Decoder:</strong> Reconstructs the separated speech signals from the encoded features. Uses a shared decoder structure inspired by Siamese networks to handle the split sequences.
+                </li>
+            </ul>
+            
+            <h3>2. Weight-Sharing Siamese Network</h3>
+            <p>The decoder uses a weight-sharing mechanism across multiple branches, similar to a Siamese network, to process separated features. This approach enhances the discriminative power of the network by ensuring that each decoder branch learns distinct characteristics of each speaker's features.</p>
+            
+            <h3>3. Transformer Blocks</h3>
+            <ul>
+                <li><strong>Global Transformer:</strong> Captures long-range dependencies in the sequence.</li>
+                <li><strong>Local Transformer:</strong> Focuses on fine-grained, short-term dependencies.</li>
+            </ul>
+            
+            <h3>4. Cross-Speaker (CS) Module</h3>
+            <p>This module within the decoder allows interaction between features of different speakers, enhancing the network's ability to separate and reconstruct overlapping speech elements.</p>
+            
+            <h3>5. Multi-Loss Training</h3>
+            <p>The network is trained with a multi-loss objective, where intermediate layers are optimized to progressively refine the separated outputs. This progressive reconstruction approach helps in achieving better performance by guiding the network to focus on discriminative learning at multiple stages.</p>
+            
+            <h2>Results and Evaluation</h2>
+            <p>The SepReformer model demonstrates state-of-the-art performance on various benchmark datasets, including WSJ0-2Mix, WHAM!, WHAMR!, and LibriMix. Key findings include:</p>
+            <ul>
+                <li>Significant reduction in computational load compared to traditional dual-path models.</li>
+                <li>Superior performance in terms of signal-to-noise ratio improvement (SI-SNR) and other metrics.</li>
+                <li>Effectiveness of the early split and shared decoder structure in improving separation quality.</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            <p>The proposed SepReformer method offers a novel and efficient approach to speech separation by leveraging an asymmetric encoder-decoder structure, weight-sharing Siamese networks, and Transformer-based sequence processing. This results in improved separation performance with reduced computational requirements, making it a promising solution for real-time speech separation applications.</p>
+        
+            <h2>Limitations</h2>
+            <p>Our study focuses on 2-speaker mixture situations to assess our models in various model sizes and in extensive datasets including noise and reverberation. Consequently, we believe that further investigation is needed to validate more than 2-speaker mixture scenarios.</p>
+            <p>Additionally, an important future direction is to separate mixtures for an unknown number of speakers, as it is impractical to assume that the number of speakers to be separated is known in advance. Finally, although we experimentally validated our SepRe method, we believe that further investigation is necessary to understand its underlying mechanisms.</p>
+        
+            <h2>Future Study</h2>
+            <ul>
+                <li><strong>Validation for More Than 2-Speaker Mixtures:</strong> Further investigation is needed to validate the SepReformer for scenarios involving more than two speakers.</li>
+                <li><strong>Unknown Number of Speakers:</strong> Developing methods to separate mixtures with an unknown number of speakers, as it is impractical to assume the number of speakers in advance.</li>
+                <li><strong>Understanding Underlying Mechanisms:</strong> Further research is required to understand the underlying mechanisms of the SepRe method, despite its experimental validation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+  <!-- Image carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Table_4.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              First image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Table_1.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Second image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Table_2.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Third image
+            </h2>
+          </div>
+          <div class="item">
+            <!-- Your image here -->
+            <img src="static/images/Table_3.png" alt="MY ALT TEXT"/>
+            <h2 class="subtitle has-text-centered">
+              Third image
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End image carousel -->
+  
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        @article{
+          TBD,
+          title={TBD},
+          author={TBD},
+          journal={TBD},
+          year={TBD},
+          volume={TBD},
+          number={TBD},
+          pages={TBD},
+          doi={TBD}
+        }
+      </code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
